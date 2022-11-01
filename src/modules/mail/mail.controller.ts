@@ -1,9 +1,11 @@
 import { Body, Controller, Post, UseGuards } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { UserService } from "../user/user.service";
 import ConfirmEmailDto from "./dtos/confirm-email.dto";
 import ResetPasswordEmailDto from "./dtos/reset-password-email.dto";
 import { MailService } from "./mail.service";
 
+@ApiTags('email')
 @Controller('email')
 export class MailController {
   constructor(

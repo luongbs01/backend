@@ -3,7 +3,8 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class RegisterDto {
   @ApiProperty({
-    required: true
+    required: true,
+    type: String
   }) 
   @IsEmail()
   @IsNotEmpty()
@@ -14,7 +15,8 @@ export class RegisterDto {
   email: string; 
 
   @ApiProperty({
-    required: true
+    required: true,
+    type: String
   }) 
   @IsString()
   @IsNotEmpty()

@@ -11,6 +11,7 @@ import {
   UseGuards, 
   UseInterceptors, 
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { of } from 'rxjs';
 import { UserEntity } from 'src/model/entities/user.entity';
@@ -21,6 +22,7 @@ import RequestWithUser from '../auth/interfaces/request-with-user.interface';
 import UpdateProfileDto from './dtos/update-profile.dto';
 import { avatarStorageOptions } from './helpers/avatar-storage';
 
+@ApiTags('user')
 @Controller('user')
 export class UserController {
   constructor(

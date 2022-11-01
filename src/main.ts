@@ -3,6 +3,7 @@ import * as cookieParser from 'cookie-parser';
 dotenv.config();
 
 import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { ValidationPipe } from "@nestjs/common";
 import { ConfigService } from '@nestjs/config';
@@ -23,6 +24,13 @@ async function bootstrap() {
     origin: configService.get('FRONTEND'),
     credentials: true,
   }));
+
+  const config = new DocumentBuilder()
+    .setTitle("Facebook")
+    .setDescription("Facebook API")
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(8000);
 }

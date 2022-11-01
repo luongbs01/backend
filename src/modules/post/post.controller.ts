@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Query, Req, Res, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { join } from "path";
 import { of } from "rxjs";
@@ -9,6 +10,7 @@ import { CreatePostDto } from "./dtos/create-post.dto";
 import { postStorageOptions } from "./helpers/post-media-storage";
 import { PostService } from "./post.service";
 
+@ApiTags('posts')
 @Controller('posts')
 export class PostController {
   constructor(

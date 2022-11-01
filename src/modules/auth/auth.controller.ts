@@ -1,4 +1,5 @@
 import { Body, Controller, HttpCode, Req, Post, UseGuards, Get, Param, UseInterceptors, ClassSerializerInterceptor } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { MailService } from "../mail/mail.service";
 import { UserService } from "../user/user.service";
 import { AuthService } from "./auth.service";
@@ -9,6 +10,7 @@ import JwtRefreshGuard from "./guards/jwt-refresh.guard";
 import { LocalAuthGuard } from "./guards/local-auth.guard";
 import RequestWithUser from "./interfaces/request-with-user.interface";
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(
