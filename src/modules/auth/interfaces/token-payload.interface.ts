@@ -1,5 +1,5 @@
 interface TokenPayload {
-  id: number;   
+  id: number;
 }
 
 export default TokenPayload;

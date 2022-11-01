@@ -1,5 +1,12 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import UserEntity from "./user.entity";
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import UserEntity from './user.entity';
 
 @Entity()
 export class PostEntity extends BaseEntity {
@@ -9,15 +16,14 @@ export class PostEntity extends BaseEntity {
   @ManyToOne(() => UserEntity, (userEntity) => userEntity.posts)
   author: UserEntity;
 
-  @CreateDateColumn({
-  })
+  @CreateDateColumn({})
   createdAt: Date;
 
   @Column()
   content: string;
 
   @Column({
-    default: null
+    default: null,
   })
   image: string;
 

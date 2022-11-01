@@ -1,15 +1,21 @@
 import { Exclude } from 'class-transformer';
 import { DEFAULT_AVATAR } from 'src/modules/user/user.constants';
-import { Column, Entity, PrimaryGeneratedColumn, BaseEntity, OneToMany } from 'typeorm';
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  BaseEntity,
+  OneToMany,
+} from 'typeorm';
 import PostEntity from './post.entity';
 
 @Entity()
-export class UserEntity extends BaseEntity{
+export class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
-    default: null
+    default: null,
   })
   name: string;
 
@@ -18,22 +24,22 @@ export class UserEntity extends BaseEntity{
   password: string;
 
   @Column({
-    unique: true
+    unique: true,
   })
   email: string;
 
   @Column({
-    default: DEFAULT_AVATAR
+    default: DEFAULT_AVATAR,
   })
   avatar: string;
-  
+
   @Column({
-    default: null
+    default: null,
   })
   location: string;
 
   @Column({
-    default: null
+    default: null,
   })
   bio: string;
 
@@ -41,17 +47,17 @@ export class UserEntity extends BaseEntity{
   birthday: Date;
 
   @Column({
-    default: null
+    default: null,
   })
   facebook: string;
 
   @Column({
-    default: null
+    default: null,
   })
   instagram: string;
-  
+
   @Column({
-    default: null
+    default: null,
   })
   linkedin: string;
 
@@ -59,7 +65,7 @@ export class UserEntity extends BaseEntity{
   isVerified: boolean;
 
   @Column({
-    nullable: true
+    nullable: true,
   })
   @Exclude()
   currentRefreshToken: string;

@@ -13,14 +13,15 @@ export const avatarStorageOptions = {
           null,
         );
       }
-      
-      const filename: string = path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
+
+      const filename: string =
+        path.parse(file.originalname).name.replace(/\s/g, '') + uuidv4();
       const extension: string = path.parse(file.originalname).ext;
 
-      callback(null, `${filename}${extension}`)
-    }    
+      callback(null, `${filename}${extension}`);
+    },
   }),
   limits: {
-    fileSize: Math.pow(1024, 2) * 2
-  }
-}
+    fileSize: Math.pow(1024, 2) * 2,
+  },
+};

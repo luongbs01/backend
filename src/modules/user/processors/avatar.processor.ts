@@ -1,12 +1,22 @@
-import { OnQueueActive, OnQueueCompleted, OnQueueFailed, Process, Processor } from "@nestjs/bull";
-import { Injectable, Logger } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Job } from "bull";
+import {
+  OnQueueActive,
+  OnQueueCompleted,
+  OnQueueFailed,
+  Process,
+  Processor,
+} from '@nestjs/bull';
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Job } from 'bull';
 import * as fs from 'fs';
-import UserEntity from "src/model/entities/user.entity";
-import { UserRepository } from "src/model/repositories/user.repository";
-import { AVATAR_QUEUE, DEFAULT_AVATAR, RESIZING_AVATAR } from "../user.constants";
-import { UserService } from "../user.service";
+import UserEntity from 'src/model/entities/user.entity';
+import { UserRepository } from 'src/model/repositories/user.repository';
+import {
+  AVATAR_QUEUE,
+  DEFAULT_AVATAR,
+  RESIZING_AVATAR,
+} from '../user.constants';
+import { UserService } from '../user.service';
 
 @Injectable()
 @Processor(AVATAR_QUEUE)
@@ -36,10 +46,12 @@ export class AvatarProcessor {
       error.stack,
     );
   }
-  
+
   @Process(RESIZING_AVATAR)
-  public async resizeAvatar(job: Job<{ id: number, file: Express.Multer.File }>) {
-    this.logger.log("Resizing and saving avatar");
+  public async resizeAvatar(
+    job: Job<{ id: number; file: Express.Multer.File }>,
+  ) {
+    this.logger.log('Resizing and saving avatar');
 
     const sharp = require('sharp');
 
@@ -47,46 +59,40 @@ export class AvatarProcessor {
       const user = await this.userService.getUserById(job.data.id);
 
       if (user.avatar != DEFAULT_AVATAR) {
-        fs.unlink(
-          './uploads/avatars/40x40/' + user.avatar, 
-          (err) => {
-            if (err) {
-              console.error(err);
-              return err;
-            }
+        fs.unlink('./uploads/avatars/40x40/' + user.avatar, (err) => {
+          if (err) {
+            console.error(err);
+            return err;
           }
-        )
+        });
 
-        fs.unlink(
-          './uploads/avatars/70x70/' + user.avatar, 
-          (err) => {
-            if (err) {
-              console.error(err);
-              return err;
-            }
+        fs.unlink('./uploads/avatars/70x70/' + user.avatar, (err) => {
+          if (err) {
+            console.error(err);
+            return err;
           }
-        )
+        });
 
-        fs.unlink(
-          './uploads/avatars/original/' + user.avatar, 
-          (err) => {
-            if (err) {
-              console.error(err);
-              return err;
-            }
+        fs.unlink('./uploads/avatars/original/' + user.avatar, (err) => {
+          if (err) {
+            console.error(err);
+            return err;
           }
-        )
+        });
       }
 
-      await this.userRepo.update(
-        job.data.id, {
+      await this.userRepo.update(job.data.id, {
         avatar: job.data.file.filename,
       });
 
-      sharp(job.data.file.path).resize(40, 40).toFile('./uploads/avatars/40x40/' + job.data.file.filename);
-      sharp(job.data.file.path).resize(70, 70).toFile('./uploads/avatars/70x70/' + job.data.file.filename);
-    } catch(error) {
-      this.logger.error("Failed to resize and save avatar");
+      sharp(job.data.file.path)
+        .resize(40, 40)
+        .toFile('./uploads/avatars/40x40/' + job.data.file.filename);
+      sharp(job.data.file.path)
+        .resize(70, 70)
+        .toFile('./uploads/avatars/70x70/' + job.data.file.filename);
+    } catch (error) {
+      this.logger.error('Failed to resize and save avatar');
     }
   }
 }

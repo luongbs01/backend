@@ -13,7 +13,7 @@ import { AvatarProcessor } from './processors/avatar.processor';
     TypeOrmModule.forFeature([UserEntity]),
     BullModule.registerQueue({
       name: AVATAR_QUEUE,
-    })
+    }),
   ],
   exports: [UserService],
   controllers: [UserController],
