@@ -42,7 +42,7 @@ export class PostController {
   @Get('posts-by-user')
   @UseGuards(JwtAuthGuard, EmailConfirmGuard)
   async getQuery(
-    @Query('author') author,
+    @Query('author') author: number,
     @Query('take') take: number,
     @Query('skip') skip: number,
   ) {
@@ -52,7 +52,7 @@ export class PostController {
 
   @Get('post-image/:imagename')
   @UseGuards(JwtAuthGuard, EmailConfirmGuard)
-  async getPostImage(@Param('imagename') imagename, @Res() res) {
+  async getPostImage(@Param('imagename') imagename: string, @Res() res) {
     return of(
       res.sendFile(
         join(process.cwd(), './uploads/post/images/584x342/' + imagename),
@@ -62,7 +62,7 @@ export class PostController {
 
   @Delete('delete-post/:postId')
   @UseGuards(JwtAuthGuard, EmailConfirmGuard)
-  async deletePost(@Param('postId') postId) {
+  async deletePost(@Param('postId') postId: number) {
     return this.postService.deletePost(postId);
   }
 }
