@@ -1,3 +1,5 @@
+<h3 align="center">Facebook - Multiple Platform API</h3>
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
@@ -22,16 +24,60 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
+<!-- TABLE OF CONTENTS -->
+## Table of contents
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#description">Description</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#running-the-app">Running the app</a></li>
+    <li><a href="#test">Test</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+### Built With
 
+## Getting Started
+These are the necessary requirements to run the program on your computer.
+
+### Prerequisites
+To run the program and run the APIs, you need to install the following packages:
+* nodejs --version >= 18 : https://nodejs.org/en/
+
+* mySQL : https://www.mysql.com/downloads/
+
+* docker : https://docs.docker.com/desktop/install/windows-install/
+
+
+### Installation
+1. Install package
 ```bash
 $ npm install
 ```
-
+2. Install container : run docker first
+```bash
+$ docker-compose up
+```
 ## Running the app
 
 ```bash
@@ -58,16 +104,12 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Contributing
 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Contact
+
+
